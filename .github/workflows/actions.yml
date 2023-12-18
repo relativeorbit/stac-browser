@@ -17,9 +17,8 @@ jobs:
       - run: npm install
       
       - run: | 
-          npm run build -- \ 
-          --historyMode=hash \
-          --SB_pathPrefix="${{ env.pathPrefix }}" 
+          npm run build -- --SB_pathPrefix="${{ env.pathPrefix }}" \ 
+          --historyMode=hash 
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
