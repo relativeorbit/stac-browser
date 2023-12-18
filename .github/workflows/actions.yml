@@ -4,19 +4,35 @@ on:
     branches:
       - main
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 'lts/*'
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      
       - run: npm install
-      - run: npm run build -- --pathPrefix="/stac-browser" --historyMode=hash
-      - uses: peaceiris/actions-gh-pages@v3
+      
+      - run: npm run build -- --historyMode=hash
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist
-          exclude_assets: 'report.html'
-          user_name: 'STAC Browser CI'
-          user_email: matthias.mohr@radiant.earth
+          # Upload just 'dist/' folder
+          path: 'dist'
+        
+  # https://github.com/actions/deploy-pages
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write 
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v3 
