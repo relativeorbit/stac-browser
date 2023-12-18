@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+
+env:
+  SB_pathPrefix: "/${{ github.event.repository.name }}/"
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,7 +16,10 @@ jobs:
       
       - run: npm install
       
-      - run: npm run build -- --historyMode=hash
+      - run: | 
+          npm run build -- \ 
+          --historyMode=hash \
+          --SB_pathPrefix="${{ env.pathPrefix }}" 
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
