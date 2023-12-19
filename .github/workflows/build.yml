@@ -1,9 +1,6 @@
-name: Deploy
+name: ReBuild
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 env:
   SB_pathPrefix: "/${{ github.event.repository.name }}/"
