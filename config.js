@@ -20,7 +20,7 @@ module.exports = {
         "ro"
     ],
     apiCatalogPriority: null,
-    useTileLayerAsFallback: true,
+    useTileLayerAsFallback: false,
     displayGeoTiffByDefault: false,
     buildTileUrlTemplate: ({href, asset}) => "https://titiler.xyz/cog/tiles/{z}/{x}/{y}@2x?url=" + encodeURIComponent(asset.href.startsWith("/vsi") ? asset.href : href),
     stacProxyUrl: null,
