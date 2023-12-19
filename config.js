@@ -21,8 +21,15 @@ module.exports = {
     ],
     apiCatalogPriority: null,
     useTileLayerAsFallback: false,
-    displayGeoTiffByDefault: false,
-    buildTileUrlTemplate: ({href, asset}) => "https://titiler.xyz/cog/tiles/{z}/{x}/{y}@2x?url=" + encodeURIComponent(asset.href.startsWith("/vsi") ? asset.href : href),
+    displayGeoTiffByDefault: true,
+    buildTileUrlTemplate: ({href, asset, key}) => {
+        if (key == "wrapped") {
+          return "https://tiles.rdnt.io/tiles/{z}/{x}/{y}@2x?url={url}&rescale=-3.14,3.14&colormap_name=hsv";
+        }
+        else {
+          return "https://tiles.rdnt.io/tiles/{z}/{x}/{y}@2x?url={url}";
+        }
+      },
     stacProxyUrl: null,
     pathPrefix: "/",
     historyMode: "history",
