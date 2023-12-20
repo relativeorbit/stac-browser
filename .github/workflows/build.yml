@@ -17,7 +17,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: dist
-          key: stacbrowser
+          key: stacbrowser1
       
       - name: NPM Install
         if: steps.cache.outputs.cache-hit != 'true'
@@ -27,9 +27,10 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm run build -- --historyMode=hash 
 
-      - name: Overwrite Config
+      - name: Output Config
         run: | 
-          cp config.js dist/config.js
+          # Overwrite config from elsewhere? 
+          # cp config.js dist/config.js
           cat dist/config.js
       
       - name: Upload artifact
