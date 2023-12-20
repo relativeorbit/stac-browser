@@ -22,8 +22,9 @@ module.exports = {
     apiCatalogPriority: null,
     useTileLayerAsFallback: false,
     displayGeoTiffByDefault: true,
-    buildTileUrlTemplate: ({href, asset, key}) => {
-        if (key == "wrapped") {
+    buildTileUrlTemplate: ({href, asset}) => {
+        let url = encodeURIComponent(asset.href.startsWith("/vsi") ? asset.href : href);
+        if asset.href.endswith('wrapped_phase.tif') {
           return "https://tiles.rdnt.io/tiles/{z}/{x}/{y}@2x?url={url}&rescale=-3.14,3.14&colormap_name=hsv";
         }
         else {
