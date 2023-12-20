@@ -26,6 +26,11 @@ jobs:
       - name: NPM Build
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm run build -- --historyMode=hash 
+
+      - name: Overwrite Config
+        run: | 
+          cp config.js dist/config.js
+          cat dist/config.js
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
