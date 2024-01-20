@@ -27,10 +27,10 @@ module.exports = {
         console.log(url)
         console.log(asset)
         if (asset.href.endswith('wrapped_phase.tif')) {
-          return "https://titiler.xyz/cog/tiles/{z}/{x}/{y}@2x?url={url}&rescale=-3.14,3.14&colormap_name=hsv";
+          return "https://o2dj1bd0a4.execute-api.us-west-2.amazonaws.com/tiles/{z}/{x}/{y}@2x?url={url}&rescale=-3.14,3.14&colormap_name=hsv";
         }
         else {
-          return "https://tiles.rdnt.io/tiles/{z}/{x}/{y}@2x?url={url}";
+          return "https://o2dj1bd0a4.execute-api.us-west-2.amazonaws.com/tiles/{z}/{x}/{y}@2x?url={url}";
         }
       },
     stacProxyUrl: null,
