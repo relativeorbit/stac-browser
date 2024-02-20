@@ -26,7 +26,7 @@ module.exports = {
         let url = encodeURIComponent(asset.href.startsWith("/vsi") ? asset.href : href);
         console.log(url)
         console.log(asset)
-        if (asset.href.endswith('wrapped_phase.tif')) {
+        if (asset.href.endsWith('wrapped_phase.tif')) {
           return "https://o2dj1bd0a4.execute-api.us-west-2.amazonaws.com/tiles/{z}/{x}/{y}@2x?url={url}&rescale=-3.14,3.14&colormap_name=hsv";
         }
         else {
