@@ -27,10 +27,10 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm run build -- --historyMode=hash 
 
-      - name: Output Config
+      - name: Overwrite Config.js
         run: | 
-          # Overwrite config from elsewhere? 
-          # cp config.js dist/config.js
+          # Copy config into cached build
+          cp config.js dist/config.js
           cat dist/config.js
       
       - name: Upload artifact
