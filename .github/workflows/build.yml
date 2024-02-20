@@ -12,29 +12,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Cache NPM Build
-        id: cache
-        uses: actions/cache@v4
-        with:
-          path: dist
-          key: stacbrowser2
+      # Warning: For some reason, unable to get 'runtime config to work' so simply rebuild each time
+      # - name: Cache NPM Build
+      #   id: cache
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: dist
+      #     key: stacbrowser2
       
       - name: NPM Install
-        if: steps.cache.outputs.cache-hit != 'true'
+      #  if: steps.cache.outputs.cache-hit != 'true'
         run: npm install
       
       - name: NPM Build
-        if: steps.cache.outputs.cache-hit != 'true'
+      #  if: steps.cache.outputs.cache-hit != 'true'
         run: npm run build -- --historyMode=hash 
 
-      - name: Show Config.js Runtime
-        continue-on-error: true
-        run: | 
-          diff config.js dist/config.js
+      # - name: Show Config.js Runtime
+      #   continue-on-error: true
+      #   run: | 
+      #     diff config.js dist/config.js
 
-      - name: Overwrite Config.js
-        run: | 
-          cp config.js dist/config.js
+      # - name: Overwrite Config.js
+      #   run: | 
+      #     cp config.js dist/config.js
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
