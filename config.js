@@ -20,7 +20,7 @@ module.exports = {
         "ro"
     ],
     apiCatalogPriority: null,
-    useTileLayerAsFallback: true,
+    useTileLayerAsFallback: false,
     displayGeoTiffByDefault: false,
     buildTileUrlTemplate: ({
         href, // the url to the GeoTIFF
