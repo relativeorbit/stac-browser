@@ -22,22 +22,19 @@ module.exports = {
     apiCatalogPriority: null,
     useTileLayerAsFallback: false,
     displayGeoTiffByDefault: false,
-    buildTileUrlTemplate: ({
-        href, // the url to the GeoTIFF
-        asset, // the STAC Asset object
-        key, // the key or name in the assets object that points to the particular asset
-        item, // the STAC item / feature
-        bounds, // LatLngBounds of the STAC asset
-        isCOG = true, // true if the asset is definitely a cloud-optimized GeoTIFF
-        isVisual = true, // true when the asset's key is "visual" (case-insensitive)
-      }) => {
-        // assets has three bands of RGB, so no need to specify bands
-        if (isVisual) return "https://tiles.rdnt.io/tiles/{z}/{x}/{y}@2x?url={url}";
-    
-        // select first three bands for non-visual assets, such as NAIP 4-band imagery
-        // where we might want to ignore the Near-Infrared Band
-        else return "https://tiles.rdnt.io/tiles/{z}/{x}/{y}@2x?url={url}&bands=1,2,3"
-      },
+    buildTileUrlTemplate: ({href, asset}) => {
+      let url = encodeURIComponent(asset.href.startsWith("/vsi") ? asset.href : href);
+      // console.log(url)
+      console.log(asset)
+      if (asset.href.endsWith('wrapped_phase.tif')) {
+        console.log('TITILER WRAPPED PHASE')
+        return "https://o2dj1bd0a4.execute-api.us-west-2.amazonaws.com/tiles/{z}/{x}/{y}@2x?url={url}&rescale=-3.14,3.14&colormap_name=hsv";
+      }
+      else {
+        console.log('TITLER DEFAULT')
+        return "https://o2dj1bd0a4.execute-api.us-west-2.amazonaws.com/tiles/{z}/{x}/{y}@2x?url={url}";
+      }
+    },
     stacProxyUrl: null,
     pathPrefix: "/",
     historyMode: "history",

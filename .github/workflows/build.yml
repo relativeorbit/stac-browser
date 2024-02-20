@@ -27,11 +27,14 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm run build -- --historyMode=hash 
 
+      - name: Show Config.js Runtime
+        continue-on-error: true
+        run: | 
+          diff config.js dist/config.js
+
       - name: Overwrite Config.js
         run: | 
-          cat dist/config.js
           cp config.js dist/config.js
-          cat dist/config.js
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
