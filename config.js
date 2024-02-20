@@ -20,7 +20,7 @@ module.exports = {
         "ro"
     ],
     apiCatalogPriority: null,
-    useTileLayerAsFallback: false,
+    useTileLayerAsFallback: true,
     displayGeoTiffByDefault: false,
     buildTileUrlTemplate: ({href, asset}) => {
         let url = encodeURIComponent(asset.href.startsWith("/vsi") ? asset.href : href);
