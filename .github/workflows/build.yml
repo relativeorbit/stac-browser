@@ -14,10 +14,10 @@ jobs:
 
       - name: Cache NPM Build
         id: cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: dist
-          key: stacbrowser1
+          key: stacbrowser2
       
       - name: NPM Install
         if: steps.cache.outputs.cache-hit != 'true'
@@ -34,7 +34,7 @@ jobs:
           cat dist/config.js
       
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           # Upload just 'dist/' folder
           path: 'dist'
@@ -55,4 +55,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3 
+        uses: actions/deploy-pages@v4
