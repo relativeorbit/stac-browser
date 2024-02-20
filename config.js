@@ -24,12 +24,14 @@ module.exports = {
     displayGeoTiffByDefault: false,
     buildTileUrlTemplate: ({href, asset}) => {
         let url = encodeURIComponent(asset.href.startsWith("/vsi") ? asset.href : href);
-        console.log(url)
+        // console.log(url)
         console.log(asset)
         if (asset.href.endsWith('wrapped_phase.tif')) {
+          console.log('TITILER WRAPPED PHASE')
           return "https://o2dj1bd0a4.execute-api.us-west-2.amazonaws.com/tiles/{z}/{x}/{y}@2x?url={url}&rescale=-3.14,3.14&colormap_name=hsv";
         }
         else {
+          console.log('TITLER DEFAULT')
           return "https://o2dj1bd0a4.execute-api.us-west-2.amazonaws.com/tiles/{z}/{x}/{y}@2x?url={url}";
         }
       },
