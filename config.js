@@ -37,7 +37,6 @@ module.exports = {
         // select first three bands for non-visual assets, such as NAIP 4-band imagery
         // where we might want to ignore the Near-Infrared Band
         else return "https://tiles.rdnt.io/tiles/{z}/{x}/{y}@2x?url={url}&bands=1,2,3"
-      }
       },
     stacProxyUrl: null,
     pathPrefix: "/",
