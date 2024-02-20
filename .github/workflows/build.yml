@@ -28,11 +28,8 @@ jobs:
         run: npm run build -- --historyMode=hash 
 
       - name: Overwrite Config.js
-        # https://stackoverflow.com/questions/67113188/git-diff-returns-error-process-completed-with-exit-code-1-github-actions
-        continue-on-error: true
         run: | 
-          # Copy config into cached build
-          diff config.js dist/config.js
+          cat dist/config.js
           cp config.js dist/config.js
           cat dist/config.js
       
