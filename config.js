@@ -24,7 +24,7 @@ module.exports = {
     displayGeoTiffByDefault: false,
     buildTileUrlTemplate: ({href, asset}) => {
       let url = encodeURIComponent(asset.href.startsWith("/vsi") ? asset.href : href);
-      // console.log(url)
+      console.log(url)
       console.log(asset)
       if (asset.href.endsWith('wrapped_phase.tif')) {
         console.log('TITILER WRAPPED PHASE')
