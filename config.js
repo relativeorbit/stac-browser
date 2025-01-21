@@ -28,11 +28,11 @@ module.exports = {
       console.log(asset)
       if (asset.href.endsWith('wrapped_phase.tif')) {
         console.log('TITILER WRAPPED PHASE')
-        return "https://titiler.xyz/cog/tiles/{z}/{x}/{y}@2x?url={url}&rescale=-3.14,3.14&colormap_name=hsv";
+        return "https://titiler.xyz/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@2x?url={url}&rescale=-3.14,3.14&colormap_name=hsv";
       }
       else {
         console.log('TITLER DEFAULT')
-        return "https://titiler.xyz/cog/tiles/{z}/{x}/{y}@2x?url={url}";
+        return "https://titiler.xyz/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@2x?url={url}";
       }
     },
     stacProxyUrl: null,
