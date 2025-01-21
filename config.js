@@ -47,7 +47,7 @@ module.exports = {
     itemsPerPage: 12,
     defaultThumbnailSize: null,
     maxPreviewsOnMap: 50,
-    crossOriginMedia: null,
+    crossOriginMedia: "anonymous",
     requestHeaders: {},
     requestQueryParameters: {},
     preprocessSTAC: null,
