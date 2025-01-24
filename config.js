@@ -24,11 +24,17 @@ module.exports = {
     displayGeoTiffByDefault: false,
     buildTileUrlTemplate: ({href, asset}) => {
       let url = encodeURIComponent(asset.href.startsWith("/vsi") ? asset.href : href);
-      console.log(url)
-      console.log(asset)
+      // console.log(url)
+      // console.log(asset)
       if (asset.href.endsWith('wrapped_phase.tif')) {
         console.log('TITILER WRAPPED PHASE')
         return "https://titiler.xyz/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@2x?url={url}&rescale=-3.14,3.14&colormap_name=hsv";
+      }
+      else if (asset.href.endsWith('GEC.tif') || asset.href.endsWith('MM.tif')) {
+        console.log('UMBRA OPEN DATA')
+        // url encoding of spaces is strange. a workaround is to pass /vsicurl/ prefix
+        let gdalurl = ['/vsicurl/',url];
+        return "https://titiler.xyz/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@2x?url={gdalurl}";
       }
       else {
         console.log('TITLER DEFAULT')
