@@ -24,18 +24,20 @@ module.exports = {
     displayGeoTiffByDefault: false,
     buildTileUrlTemplate: ({href, asset}) => {
       let url = encodeURIComponent(asset.href.startsWith("/vsi") ? asset.href : href);
-      // console.log(url)
-      // console.log(asset)
+      console.log(url)
+      console.log(href)
       if (asset.href.endsWith('wrapped_phase.tif')) {
         console.log('TITILER WRAPPED PHASE')
         return "https://titiler.xyz/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@2x?url={url}&rescale=-3.14,3.14&colormap_name=hsv";
       }
       else if (asset.href.endsWith('GEC.tif') || asset.href.endsWith('MM.tif')) {
         console.log('UMBRA OPEN DATA')
+        // I think stac-layer doesn't know about other variable names, just try passing href to avoid double encoding with +s in names
+        // [stac-layer] caught the following error while trying to add a tile layer: Error: No value provided for variable {gdalurl}
         // url encoding of spaces is strange. a workaround is to pass /vsicurl/ prefix
-        var gdalurl = ['/vsicurl?empty_dir=yes&url=', url].join('');
-        console.log(gdalurl)
-        return "https://titiler.xyz/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@2x?url={gdalurl}";
+        // var gdalurl = ['/vsicurl?empty_dir=yes&url=', url].join('');
+        // console.log(gdalurl)
+        return "https://titiler.xyz/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@2x?url={href}";
       }
       else {
         console.log('TITLER DEFAULT')
