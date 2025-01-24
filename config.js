@@ -33,7 +33,8 @@ module.exports = {
       else if (asset.href.endsWith('GEC.tif') || asset.href.endsWith('MM.tif')) {
         console.log('UMBRA OPEN DATA')
         // url encoding of spaces is strange. a workaround is to pass /vsicurl/ prefix
-        let gdalurl = ['/vsicurl/',url];
+        var gdalurl = ['/vsicurl/',url];
+        console.log(gdalurl)
         return "https://titiler.xyz/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@2x?url={gdalurl}";
       }
       else {
