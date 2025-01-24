@@ -37,7 +37,9 @@ module.exports = {
         // url encoding of spaces is strange. a workaround is to pass /vsicurl/ prefix
         // var gdalurl = ['/vsicurl?empty_dir=yes&url=', url].join('');
         // console.log(gdalurl)
-        return "https://titiler.xyz/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@2x?url={href}";
+        // Don't URL-encode umbra hrefs 
+        let url = href;
+        return "https://titiler.xyz/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@2x?url={url}";
       }
       else {
         console.log('TITLER DEFAULT')
