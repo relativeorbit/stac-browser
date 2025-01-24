@@ -39,6 +39,7 @@ module.exports = {
         // console.log(gdalurl)
         // Don't URL-encode just pass STAC href direct hrefs: 
         //let url = href;
+        let url = url.replaceAll('+',' ')
         return "https://titiler.xyz/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@2x?url={url}";
       }
       else {
