@@ -24,7 +24,7 @@ module.exports = {
     displayGeoTiffByDefault: false,
     buildTileUrlTemplate: ({href, asset}) => {
       let url = encodeURIComponent(asset.href.startsWith("/vsi") ? asset.href : href);
-      console.log(url)
+      console.log(asset.href)
       console.log(href)
       if (asset.href.endsWith('wrapped_phase.tif')) {
         console.log('TITILER WRAPPED PHASE')
@@ -37,8 +37,8 @@ module.exports = {
         // url encoding of spaces is strange. a workaround is to pass /vsicurl/ prefix
         // var gdalurl = ['/vsicurl?empty_dir=yes&url=', url].join('');
         // console.log(gdalurl)
-        // Don't URL-encode umbra hrefs 
-        let url = href;
+        // Don't URL-encode just pass STAC href direct hrefs: 
+        //let url = href;
         return "https://titiler.xyz/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@2x?url={url}";
       }
       else {
